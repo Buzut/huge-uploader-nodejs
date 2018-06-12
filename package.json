@@ -1,0 +1,27 @@
+{
+  "name": "savemypst-back",
+  "version": "0.1.0",
+  "description": "Node module to handle chunked file upload and reassemble them when into a single file",
+  "main": "index.js",
+  "keywords": [
+    "upload",
+    "file upload",
+    "huge file upload",
+    "big file upload",
+    "resumable upload",
+    "pausable upload",
+    "chunked upload",
+    "nodejs",
+    "busboy"
+  ],
+  "author": "Buzut (buzut.fr)",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "busboy": "^0.2.14"
+  },
+  "devDependencies": {
+    "eslint": "latest",
+    "eslint-config-airbnb-base": "latest",
+    "eslint-plugin-import": "latest"
+  }
+}
