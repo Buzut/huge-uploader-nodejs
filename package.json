@@ -20,8 +20,8 @@
     "busboy": "^0.2.14"
   },
   "devDependencies": {
-    "eslint": "latest",
-    "eslint-config-airbnb-base": "latest",
-    "eslint-plugin-import": "latest"
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0"
   }
 }
