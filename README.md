@@ -17,7 +17,7 @@ npm install huge-uploader-nodejs --save
 
 As an exemple, I'll give something in pure Node.js, without any framework. But it is obviously compatible with any framework out there.
 
-```
+```javascript
 const http = require('http');
 const uploader = require('huge-uploader-nodejs');
 
@@ -107,7 +107,7 @@ http.createServer((req, res) => {
 
 Also, if the uploader is not on the same domain, don't forget to set a CORS policy. Either directly on node or on the reverse proxy. Here's an exemple for Node:
 
-```
+```javascript
 res.setHeader('Access-Control-Allow-Origin', 'https://my-super-domain.com');
 
 if (req.url === '/upload' && req.method === 'OPTIONS') {
