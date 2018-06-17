@@ -120,7 +120,10 @@ function handleFile(tmpDir, headers, fileStream, postParams) {
     };
 
     // make sure chunk is in range
-    if (chunkCount < 0 || chunkCount >= totalChunks) error = new Error('Chunk is out of range');
+    if (chunkCount < 0 || chunkCount >= totalChunks) {
+        error = new Error('Chunk is out of range');
+        fileStream.resume();
+    }
 
     // create file upload dir if it's first chunk
     else if (chunkCount === 0) {
