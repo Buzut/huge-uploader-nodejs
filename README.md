@@ -11,7 +11,7 @@ The frontend module chunks and sends, this backend module receives and assembles
 
 ## Installation & usage
 
-```
+```javascript
 npm install huge-uploader-nodejs --save
 ```
 
@@ -102,7 +102,6 @@ http.createServer((req, res) => {
 .listen(8888, () => {
     console.log('Listening for requests');
 });
-
 ```
 
 Also, if the uploader is not on the same domain, don't forget to set a CORS policy. Either directly on node or on the reverse proxy. Here's an exemple for Node:
@@ -135,7 +134,7 @@ The three of them are required and they is nothing more.
 As said in the exemple, the module takes care of cleaning the successful uploads. But if an upload is paused and never resumed, its files are going to stay forever. So you should create a script called via a crontab that will erased directory older than the time you're willing to keep them.
 
 Example bash script:
-```
+```shell
 #!/bin/bash
 
 find /var/www/tmp -type d -mtime +24h -delete
