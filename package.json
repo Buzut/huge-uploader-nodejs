@@ -1,6 +1,6 @@
 {
-  "name": "savemypst-back",
-  "version": "0.1.0",
+  "name": "huge-uploader-nodejs",
+  "version": "1.0.0",
   "description": "Node module to handle chunked file upload and reassemble them when into a single file",
   "main": "index.js",
   "keywords": [
