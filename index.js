@@ -4,12 +4,12 @@ const fs = require('fs');
 const Busboy = require('busboy');
 
 /**
- * Make sure required headers are present
+ * Make sure required headers are present & number for file id
  * @param { Object } headers – req.headers object
  * @return { Boolean }
  */
 function checkHeaders(headers) {
-    if (!headers['uploader-chunk-number'] || !headers['uploader-chunks-total'] || !headers['uploader-file-id']) return false;
+    if (!headers['uploader-chunk-number'] || !headers['uploader-chunks-total'] || !headers['uploader-file-id'] || !headers['uploader-file-id'].match(/^[0-9]+$/)) return false;
     return true;
 }
 
