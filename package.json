@@ -3,6 +3,10 @@
   "version": "1.0.1",
   "description": "Node module to handle chunked file upload and reassemble them when into a single file",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Buzut/huge-uploader.nodejs.git"
+  },
   "keywords": [
     "upload",
     "file upload",
@@ -16,6 +20,9 @@
   ],
   "author": "Buzut (buzut.fr)",
   "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/Buzut/huge-uploader-nodejs/issues"
+  },
   "dependencies": {
     "busboy": "^0.2.14"
   },
