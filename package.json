@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Buzut/huge-uploader.nodejs.git"
+    "url": "https://github.com/Buzut/huge-uploader-nodejs.git"
   },
   "keywords": [
     "upload",
