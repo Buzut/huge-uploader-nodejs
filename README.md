@@ -79,7 +79,7 @@ http.createServer((req, res) => {
 
             if (err.message === 'Chunk is above size limit') {
                 res.writeHead(413, 'Payload Too Large', { 'Content-Type': 'text/plain' });
-                res.end(`File is too large. Max fileSize is: ${maxFileSize}MB`);
+                res.end(`Chunk is too large. Max chunkSize is: ${maxChunkSize}MB`);
                 return;
             }
 
