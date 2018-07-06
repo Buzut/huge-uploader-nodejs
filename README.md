@@ -29,7 +29,7 @@ http.createServer((req, res) => {
     if (req.url === '/upload' && req.method === 'POST') {
         // we feed the function with node's request object (here req),
         // the temp directory path and the max size for the chunks
-        uploader(req, tmpDir, maxFileSize)
+        uploader(req, tmpDir, maxFileSize, maxChunkSize)
         .then((assembleChunks) => {
             // chunk written to disk
             res.writeHead(204, 'No Content');
@@ -72,6 +72,12 @@ http.createServer((req, res) => {
             }
 
             if (err.message === 'File is above size limit') {
+                res.writeHead(413, 'Payload Too Large', { 'Content-Type': 'text/plain' });
+                res.end(`File is too large. Max fileSize is: ${maxFileSize}MB`);
+                return;
+            }
+
+            if (err.message === 'Chunk is above size limit') {
                 res.writeHead(413, 'Payload Too Large', { 'Content-Type': 'text/plain' });
                 res.end(`File is too large. Max fileSize is: ${maxFileSize}MB`);
                 return;
@@ -122,12 +128,13 @@ if (req.url === '/upload' && req.method === 'OPTIONS') {
 
 ### Options
 
-They aren't many options. As shown in the example, you pass the function:
+They aren't many options (all are required). As shown in the example, you pass the function:
 * the request object,
-* a temporary directory to write to `{ String }`,
-* the maximum file size you're accepting for the chunks `{ Number }`
+* a directory to write to `{ String }`,
+* the maximum total file size for the upload `{ Number }`,
+* the maximum chunk size `{ Number }`.
 
-The three of them are required and they is nothing more.
+Be warned that total file size is computed by multiplying `maxChunkSize` by `uploader-chunks-total` header. So if the client is splitting files in chunks smaller than  `maxChunkSize`, leading to a situation where `uploader-chunks-total` > `maxFileSize / maxChunkSize`, the upload will be refused although it might be smaller than `maxFileSize`.
 
 ### Garbage collection
 

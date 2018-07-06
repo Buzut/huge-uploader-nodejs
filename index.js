@@ -4,12 +4,32 @@ const fs = require('fs');
 const Busboy = require('busboy');
 
 /**
- * Make sure required headers are present & number for file id
+ * Make sure required headers are present & are numbers
  * @param { Object } headers – req.headers object
  * @return { Boolean }
  */
 function checkHeaders(headers) {
-    if (!headers['uploader-chunk-number'] || !headers['uploader-chunks-total'] || !headers['uploader-file-id'] || !headers['uploader-file-id'].match(/^[0-9]+$/)) return false;
+    if (
+        !headers['uploader-chunk-number'] ||
+        !headers['uploader-chunks-total'] ||
+        !headers['uploader-file-id'] ||
+        !headers['uploader-chunks-total'].match(/^[0-9]+$/) ||
+        !headers['uploader-chunk-number'].match(/^[0-9]+$/) ||
+        !headers['uploader-file-id'].match(/^[0-9]+$/)
+    ) return false;
+
+    return true;
+}
+
+/**
+ * Make sure total file size isn't bigger than limit
+ * @param { Number } maxFileSize
+ * @param { Number } maxChunkSize
+ * @param { Object } headers – req.headers object
+ * @return { Boolean }
+ */
+function checkTotalSize(maxFileSize, maxChunkSize, totalChunks) {
+    if (maxChunkSize * totalChunks > maxFileSize) return false;
     return true;
 }
 
@@ -166,10 +186,15 @@ function handleFile(tmpDir, headers, fileStream, postParams) {
  * @param { String } tmpDir – upload temp dir
  * @param { Number } maxChunkSize
  */
-function uploadFile(req, tmpDir, maxChunkSize) {
+function uploadFile(req, tmpDir, maxFileSize, maxChunkSize) {
     return new Promise((resolve, reject) => {
         if (!checkHeaders(req.headers)) {
             reject(new Error('Missing header(s)'));
+            return;
+        }
+
+        if (!checkTotalSize(maxFileSize, req.headers['uploader-chunks-total'])) {
+            reject(new Error('File is above size limit'));
             return;
         }
 
@@ -195,7 +220,7 @@ function uploadFile(req, tmpDir, maxChunkSize) {
 
             busboy.on('finish', () => {
                 if (limitReached) {
-                    reject(new Error('File is above size limit'));
+                    reject(new Error('Chunk is above size limit'));
                     return;
                 }
 
