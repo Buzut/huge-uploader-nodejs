@@ -144,7 +144,7 @@ Example bash script:
 ```shell
 #!/bin/bash
 
-find /var/www/tmp -type d -mtime +24h -delete
+find /var/www/tmp -type d -mtime +1 -delete
 ```
 
 ## How to setup with the frontend
