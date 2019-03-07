@@ -157,6 +157,7 @@ This module is made to work with [`huge-uploader`](https://github.com/Buzut/huge
 Any other header will be ignored. Also, you can send `POST` parameters. Parameters send with the last chunk only will be processed.
 
 ## Contributing
-
 There's sure room for improvement, so feel free to hack around and submit PRs!
 Please just follow the style of the existing code, which is [Airbnb's style](http://airbnb.io/javascript/) with [minor modifications](.eslintrc).
+
+To maintain things clear and visual, please follow the [git commit template](https://github.com/Buzut/git-emojis-hook).
