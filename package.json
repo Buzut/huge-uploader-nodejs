@@ -18,13 +18,13 @@
     "nodejs",
     "busboy"
   ],
-  "author": "Buzut (buzut.fr)",
+  "author": "Buzut (buzut.net)",
   "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/Buzut/huge-uploader-nodejs/issues"
   },
   "scripts": {
-    "prepare": "test -d .git && cd .git/hooks/ && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/commit-msg && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/prepare-commit-msg && chmod +x *"
+    "prepare": "test -d .git && cd .git/hooks/ && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/commit-msg && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/prepare-commit-msg && chmod +x * || exit 0"
   },
   "dependencies": {
     "busboy": "^0.2.14"
