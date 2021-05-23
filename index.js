@@ -193,7 +193,7 @@ function uploadFile(req, tmpDir, maxFileSize, maxChunkSize) {
             return;
         }
 
-        if (!checkTotalSize(maxFileSize, req.headers['uploader-chunks-total'])) {
+        if (!checkTotalSize(maxFileSize, maxChunkSize, req.headers['uploader-chunks-total'])) {
             reject(new Error('File is above size limit'));
             return;
         }
