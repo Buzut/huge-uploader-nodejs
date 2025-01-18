@@ -30,7 +30,7 @@
     "busboy": "^0.2.14"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
+    "eslint": "^9.18.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.12.0"
   }
